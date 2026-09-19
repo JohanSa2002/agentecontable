@@ -1,0 +1,46 @@
+[project]
+name = "agentecontable"
+version = "0.1.0"
+description = "Agente inteligente para gestión de facturas panameñas — V1"
+requires-python = ">=3.13"
+dependencies = [
+    # LLM: extracción estructurada (texto y visión)
+    "anthropic>=1.0",
+    # Modelos de datos y validación
+    "pydantic>=2.9",
+    "pydantic-settings>=2.6",
+    # PDF: capa de texto y render de páginas a imagen (sin poppler)
+    "pymupdf>=1.25",
+    # QR: detector integrado de OpenCV (sin zbar)
+    "opencv-python-headless>=4.10",
+    "numpy>=2.0",
+    # Imágenes: preview WebP, normalización
+    "pillow>=11.0",
+    # MIME real por magic bytes (puro Python)
+    "filetype>=1.2",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3",
+    "pytest-asyncio>=0.24",
+    "ruff>=0.8",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/agentecontable"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
