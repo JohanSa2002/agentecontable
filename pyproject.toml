@@ -40,6 +40,7 @@ asyncio_mode = "auto"
 
 [tool.ruff]
 line-length = 100
+include = ["src/**/*.py", "tests/**/*.py", "pyproject.toml"]
 target-version = "py313"
 
 [tool.ruff.lint]
